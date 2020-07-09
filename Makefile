@@ -10,3 +10,6 @@ clean:
   
 build:clean fmt
 	go build -o bin/${APP_NAME} .
+
+setup:clean fmt
+	go build -ldflags "-s -w" -o bin/${APP_NAME} .

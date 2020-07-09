@@ -9,9 +9,10 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/yezihack/saber/internal"
+
 	"github.com/spf13/cobra"
 	"github.com/unknwon/com"
-	"github.com/yezihack/saber/internel"
 )
 
 // command
@@ -32,9 +33,9 @@ var (
 			return nil
 		},
 		Run: func(cmd *cobra.Command, args []string) { // 这个 args 就是 arguments
-			err := internel.FileSystem(args[0], port)
+			err := internal.FileSystem(args[0], port)
 			if err != nil {
-				fmt.Println(err)
+				fmt.Println("file system err:", err)
 				os.Exit(1)
 			}
 		},

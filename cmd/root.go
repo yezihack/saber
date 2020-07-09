@@ -6,29 +6,48 @@
 package cmd
 
 import (
+	"log"
 	"os"
+
+	"github.com/yezihack/saber/entity"
+	"github.com/yezihack/saber/internal"
 
 	"github.com/spf13/cobra"
 )
 
 // 根
-var rootCmd = &cobra.Command{
-	Use: "saber",
-	// Example: "saber fs /data/logs/ --port 7000",
-	Short: "Saber toolkit",
-	Long:  `Saber is an integrated toolbox`,
-	Run: func(cmd *cobra.Command, args []string) {
-	},
-}
+var (
+	// 配置文件
+	conf    = new(entity.Config)
+	rootCmd = &cobra.Command{
+		Use:   "saber",
+		Short: "Saber toolkit",
+		Long:  `Saber is an integrated toolbox`,
+		Run: func(cmd *cobra.Command, args []string) {
+		},
+	}
+)
 
 func init() {
+	rootCmd.PersistentFlags().BoolVarP(&conf.Debug, "debug", "d", false, "print verbose log info")
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(FileSystem)
+	rootCmd.AddCommand(TcpProxy)
 }
 
+func GetRoot() *cobra.Command {
+	return rootCmd
+}
+
+// 执行
 func Execute() {
+	internal.InitInternal(conf)
+	if conf.Debug {
+		log.SetFlags(log.Lshortfile | log.LstdFlags)
+	} else {
+		log.SetFlags(log.LstdFlags)
+	}
 	if err := rootCmd.Execute(); err != nil {
-		/*		fmt.Println(err)*/
 		os.Exit(1)
 	}
 }
