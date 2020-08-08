@@ -33,6 +33,7 @@ func init() {
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(FileSystem)
 	rootCmd.AddCommand(TcpProxy)
+	rootCmd.AddCommand(Password)
 }
 
 func GetRoot() *cobra.Command {
@@ -41,6 +42,7 @@ func GetRoot() *cobra.Command {
 
 // 执行
 func Execute() {
+	// 初使 配置文件
 	internal.InitInternal(conf)
 	if conf.Debug {
 		log.SetFlags(log.Lshortfile | log.LstdFlags)

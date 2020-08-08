@@ -10,5 +10,4 @@ import (
 )
 
 func TestNewTcpProxy(t *testing.T) {
-	NewTcpProxy("localhost:3306", "localhost:3307")
 }

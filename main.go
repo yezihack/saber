@@ -9,6 +9,7 @@ import (
 
 func main() {
 	cmd.Execute()
+	// generateDoc()
 }
 func generateDoc() {
 	err := doc.GenMarkdownTree(cmd.GetRoot(), "./")
