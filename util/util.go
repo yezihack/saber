@@ -4,7 +4,9 @@
  */
 package util
 
-import "os"
+import (
+	"os"
+)
 
 // 判断是否是目录
 func IsDir(dir string) bool {
@@ -13,12 +15,6 @@ func IsDir(dir string) bool {
 		return false
 	}
 	return f.IsDir()
-}
-
-// HumaneFileSize calculates the file size and generate user-friendly string.
-func HumaneFileSize(s uint64) string {
-	sizes := []string{"B", "KB", "MB", "GB", "TB", "PB", "EB"}
-	return humanateBytes(s, 1024, sizes)
 }
 
 // FileMTime returns file modified time and possible error.
@@ -37,4 +33,17 @@ func FileSize(file string) (int64, error) {
 		return 0, err
 	}
 	return f.Size(), nil
+}
+
+// 判断结尾处是否是以某字符结尾。
+func HasSuffix(s, suffix string) bool {
+	return len(s) >= len(suffix) && s[len(s)-len(suffix):] == suffix
+}
+
+// 最后添加某字符，如何没有则添加，有则不添加。
+func AddSuffix(s, suffix string) string {
+	if !HasSuffix(s, suffix) {
+		return s + suffix
+	}
+	return s
 }

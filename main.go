@@ -11,7 +11,10 @@ import (
 func main() {
 	// 带参数 go run . doc
 	args := os.Args
-	if len(args) > 0 && args[1] == "doc" {
+	if len(args) == 1 {
+		return
+	}
+	if args[1] == "doc" {
 		generateDoc()
 		return
 	}

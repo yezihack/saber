@@ -22,7 +22,7 @@ var (
 	rootCmd = &cobra.Command{
 		Use:   "saber",
 		Short: "Saber toolkit",
-		Long:  `Saber is an integrated toolbox`,
+		Long:  `Saber 是日常工作的小工具箱`,
 		Run: func(cmd *cobra.Command, args []string) {
 		},
 	}
@@ -34,6 +34,7 @@ func init() {
 	rootCmd.AddCommand(FileSystem)
 	rootCmd.AddCommand(TcpProxy)
 	rootCmd.AddCommand(Password)
+	rootCmd.AddCommand(CopyCommand)
 }
 
 func GetRoot() *cobra.Command {

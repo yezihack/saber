@@ -29,6 +29,10 @@ window:fmt
 mac:fmt
 	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -ldflags '-s -w' -o output/mac/${APP_NAME} .
 
+macM1:fmt
+	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -a -ldflags '-s -w' -o output/mac/${APP_NAME} .
+
+
 tar:
 	tar -zcvf output/${APP_NAME}$(VERSION).window-amd64.tar.gz output/window/${APP_NAME}.exe
 	tar -zcvf output/${APP_NAME}$(VERSION).linux-amd64.tar.gz output/linux/${APP_NAME}
